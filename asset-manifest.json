@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Pathfinding-Visualiser/static/css/main.978650c3.css",
+    "main.js": "/Pathfinding-Visualiser/static/js/main.07ee7fdf.js",
+    "static/js/787.2036a371.chunk.js": "/Pathfinding-Visualiser/static/js/787.2036a371.chunk.js",
+    "static/media/pngwing.com.png": "/Pathfinding-Visualiser/static/media/pngwing.com.770c891b19d8e1bce62a.png",
+    "index.html": "/Pathfinding-Visualiser/index.html",
+    "main.978650c3.css.map": "/Pathfinding-Visualiser/static/css/main.978650c3.css.map",
+    "main.07ee7fdf.js.map": "/Pathfinding-Visualiser/static/js/main.07ee7fdf.js.map",
+    "787.2036a371.chunk.js.map": "/Pathfinding-Visualiser/static/js/787.2036a371.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.978650c3.css",
+    "static/js/main.07ee7fdf.js"
+  ]
+}
