@@ -1,0 +1,84 @@
+.row {
+    display: grid;
+    grid-template-columns: repeat(50, 1fr);
+   grid-template-rows: repeat(20, 30px);
+    
+  }
+  .tab {
+    display: flex;
+    background-color: #CD5888;
+    margin-bottom: 2%;
+    padding:1%;
+  }
+  .btnlabel {
+    font-size: medium;
+    color: white;
+    
+  
+  }
+  button {
+    border-radius: 8px;
+    margin: 1%;
+    min-height: 30px;
+    background-color: #913175;
+    border-width: 1px;
+  }
+  .cell {
+    border: 1px;
+    border-style: solid;
+    border-color: turquoise;
+    animation-duration: 2s;
+    
+  }
+  .wall {
+   
+    animation-name: bl;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+  }
+  .space {
+    background-color: white;
+  }
+  @keyframes bl {
+    0% {background-color: black;
+       transform: scale(0.10);
+  
+       border-color: black;
+      }
+       
+     17% {transform : scale(0.20);
+        background-color: black;
+  
+        border-color: black;}
+  
+    33% {transform : scale(0.33);
+      background-color: black;
+  
+      border-color: black;}
+      66% {transform : scale(0.66);
+        background-color: black;
+  
+        border-color: black;}
+  
+    88% {transform : scale(0.88);
+      background-color: black;
+  
+      border-color: black;}
+  
+    100% {transform : scale (1) ;
+      background-color: black;
+  
+      border-color: black;}
+  }
+  .starter {
+    /* background-image: url("D:\Downloads\png-transparent-arrow-illustration-arrow-icon-right-arrow-angle-web-design-internet-thumbnail.png");
+    background-size: 100%;
+    background-position: center; */
+    background-color: blue;
+  }
+  .test {
+    min-height: 100px;
+  }
+  

@@ -1,38 +1,272 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.canvas {
+  display: grid;
+  grid-template-columns: repeat(50, 1fr);
+ grid-template-rows: repeat(20, 30px);
+  
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  margin-top: 0%;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.controls {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
+  margin-bottom: 2%;
+  padding:1%;
+  overflow: wrap;
+}
+.tab {
+  margin-top: 0%;
+ 
+  background-color: #0E8388;
+} 
+.btnlabel {
+  font-size: medium;
+  color: whitesmoke;
+  padding-top: 2%;
+ 
+  
+
+}
+button {
+  
+  margin: 1%;
+  margin-left: 0px;
+  min-height: 30px;
+  background-color:#0E8388;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+  position: relative;
+ 
+  border: 0px;
+}
+label:hover{
+  color:#00ffcc;
+}
+.tabbtn::after {
+  content: '';
+  width: 80%;
+  border-radius: 4px;
+  
+  background-color: azure;
+  position: absolute;
+  height : 2px;
+  transform: scaleX(0);
+  bottom: 0px;
+  left: 12px;
+  transition: transform 0.2s;
+  transform-origin: left;
+  transition-timing-function: linear;
+
+}
+.tabbtn:hover:after {
+  content: '';
+  width: 80%;
+  
+  background-color: azure;
+  position: absolute;
+  height : 3px;
+  transform: scaleX(1);
+  bottom: 0px;
+  left: 12px;
+}
+.cell {
+  border: 1px;
+  border-style: solid;
+  border-color: turquoise;
+  animation-duration: 2s;
+  
+  
+}
+
+.wall {
+  
+ 
+  animation-name: wallanimation;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  
+}
+.space {
+  background-color: white;
+}
+@keyframes wallanimation {
+  1% {background-color: black;
+     transform: scale(0.10);
+    
+
+     border-color: black;
+    }
+    70% {transform : scale(1.1) ;
+      background-color: black;
+      transition-timing-function: linear;
+      border-color: black;}
+
+    
+  
+     
+  
+  100% {transform : scale (1.0) ;
+    background-color: black;
+    transition-timing-function: linear;
+    border-color: black;}
+}
+.starter {
+  background-image: url("D:\1work\arrow-icon-1177.png");
+  background-size: 100%;
+  background-position: center;
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+}
+.end {
+  background-image: url("D:\1work\pngwing.com.png");
+  background-size: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.test {
+  min-height: 100px;
+}
+.visited {
+  
+  animation-name: visitedanimation;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes visitedanimation {
+  10% {background-color: yellow;
+     transform: scale(1);
+     transition-timing-function: linear;
+     border-color: yellow;
+    }
+  11% {
+    background-color: #4664a5;
+     transform: scale(0.6);
+     border-radius: 40%;
+     border-color: #4664a5;
+  }
+  50% {transform : scale(1);
+    background-color: #4d8ee3;
+    transition-timing-function: linear;
+    border-radius: 8%;
+    border-radius: 10%;
+
+    border-color: #40cee3;}
+
+
+  
+    60% {transform : scale(1.15);
+        background-color: #00ffcc;
+        transition-timing-function: linear;
+        border-radius: 10%;
+      
+  
+        border-color: #00ffcc;}
+  
+  
+    100% {  
+            background-color: #40cee3;
+            transform: scale(1.0);
+            /* background-color: pink; */
+            transition-timing-function: linear;
+            border-radius: 0%;
+      
+    border-color: white;}
+    
+}
+.path {
+  background-color: yellow;
+  border-color: yellow;
+  
+  
+}
+.path:hover{
+  transform: scale(1.2);
+  
+  border: 2px solid white;
+}
+.starter:hover{
+  transform: scale(1.2);
+  
+  border: 2px solid turquoise;
+}
+.end:hover{
+  transform: scale(1.2);
+  
+  border: 2px solid turquoise;
+}
+h2 {
+  color: whitesmoke;
+}
+.tutorial {
+ 
+position: absolute;
+ 
+  top: 20%;
+  background-color: white;
+  border-color: #0E8388;
+  border: 2px;
+  border-style: solid;
+  min-width: 50%;
+  height: 70%;
+  left: 25%;
+  right: 25%;
+  border-radius: 5px;
+ 
+}
+.tuthead {
+  display: flex;
+  text-align: center;
+  color: #2B3467;
+  display:block;
+}
+.tutorial > p {
+ display: block;
+ text-align: center;
+ margin-right: 10%;
+ margin-top: 10%;
+ margin-left: 10%;
+
+color:#2B3467;
+line-height: 130%;
+
+}
+
+
+.btn1{
+  position: absolute;
+  bottom:10px;
+}
+.btn2 {
+  position: absolute;
+  bottom:10px;
+  right: 5px;
+}
+.btn3 {
+  position: absolute;
+  bottom:10px;
+  right:85px;
+}
+.tutbtn> * {
+  margin: 2%;
   color: white;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 2px;
+  background-color: #EB455F;
+  
 }
-
-.App-link {
-  color: #61dafb;
+.pageno {
+  text-align: right;
+  margin:1%;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tutorial > h3 {
+  text-align: center;
 }
