@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: repeat(50, 1fr);
  grid-template-rows: repeat(20, 30px);
+ margin: 0px 5px;
   
 }
 * {
@@ -77,6 +78,7 @@ label:hover{
   border-style: solid;
   border-color: turquoise;
   animation-duration: 2s;
+  text-align: center;
   
   
 }
@@ -115,21 +117,11 @@ label:hover{
     border-color: black;}
 }
 .starter {
-  background-image: url("D:\1work\arrow-icon-1177.png");
-  background-size: 100%;
-  background-position: center;
-  background-color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
-  
+
+  text-align: center;
+ 
 }
-.end {
-  background-image: url("D:\1work\pngwing.com.png");
-  background-size: 100%;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
+
 .test {
   min-height: 100px;
 }
@@ -139,11 +131,13 @@ label:hover{
   animation-duration: 2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  transition-timing-function: linear;
+  transition-property: transform, border-radius, background-color;
 }
 @keyframes visitedanimation {
   10% {background-color: yellow;
      transform: scale(1);
-     transition-timing-function: linear;
+    
      border-color: yellow;
     }
   11% {
@@ -154,7 +148,7 @@ label:hover{
   }
   50% {transform : scale(1);
     background-color: #4d8ee3;
-    transition-timing-function: linear;
+   
     border-radius: 8%;
     border-radius: 10%;
 
@@ -164,7 +158,7 @@ label:hover{
   
     60% {transform : scale(1.15);
         background-color: #00ffcc;
-        transition-timing-function: linear;
+     
         border-radius: 10%;
       
   
@@ -175,7 +169,7 @@ label:hover{
             background-color: #40cee3;
             transform: scale(1.0);
             /* background-color: pink; */
-            transition-timing-function: linear;
+           
             border-radius: 0%;
       
     border-color: white;}

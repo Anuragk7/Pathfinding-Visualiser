@@ -3,8 +3,8 @@
     function tracker (cell,path) {
         
         const arr = []
-        var r1 = Math.floor(cell/49)
-        var c1 = cell%49
+        var r1 = Math.floor(cell/50)
+        var c1 = cell%50
         cell = path[cell]
         while (true) {
             
@@ -61,9 +61,11 @@
           
             if (r-1 >= 0 && (b[r-1][c].status=== "space" || b[r-1][c].status=== "end")){
                 if (b[r-1][c].status=== "end"){
-                   
+                    path[(r-1)*50 + c] = r*50 + c
+                    b[r-1][c].status = "visited"
+                    
                     const abc = tracker((r-1)*50 + c,path)
-                    console.log ({a:abc.length, b:ans.concat(abc)}) 
+                    console.log ({a:abc.length, b:ans.concat(abc)})
                     return {a:abc.length, x:ans}
                 }
                 queue.push({row: r-1, col: c})
@@ -77,8 +79,9 @@
             if (c+1 < 50 && (b[r][c+1].status=== "space" || b[r][c+1].status=== "end")){
                 if (b[r][c+1].status=== "end"){
                     path[(r)*50 + c+1] = r*50 + c
+                    b[r][c+1].status= "visited"
                      const abc = tracker((r)*50 + c+1,path)
-                     console.log ({a:abc, b:ans}) 
+                     console.log ({a:abc, b:ans})
                      return {a:abc.length, x:ans.concat(abc)}
                 }
                 queue.push({row: r, col: c+1});
@@ -92,6 +95,7 @@
              if ( r+1<20 && (b[r+1][c].status=== "space" ||  b[r+1][c].status=== "end")){
                 if (b[r+1][c].status=== "end"){
                     path[(r+1)*50 + c] = r*50 + c
+                    b[r+1][c].status= "visited"
                     const abc = tracker((r+1)*50 + c,path)
                     console.log ({a:abc, b:ans}) 
                     return {a:abc.length, x:ans.concat(abc)}
@@ -110,6 +114,7 @@
             if ( c-1>=0 && (b[r][c-1].status=== "space" || b[r][c-1].status=== "end")){
                 if (b[r][c-1].status=== "end"){
                     path[(r)*50 + c-1] = r*50 + c
+                    b[r][c-1].status= "visited"
                     const abc = tracker((r)*50 + c-1,path)
                     console.log ({a:abc, b:ans}) 
                     return {a:abc.length, x:ans.concat(abc)}

@@ -1,21 +1,26 @@
 import { useState } from "react";
-
+import { RecursizeMaze } from "./RecursiveMaze";
 import { useEffect } from "react";
-
 import CallBFS1 from "./CallBFS1";
 import { Tutorial} from "./Tutorial";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faCar } from "@fortawesome/free-solid-svg-icons";
 
 
 function Grid (){
 const [press, setpress] = useState(false);
+const  [weight, setweight] = useState(false);
  const [canvas, setcanvas] = useState([[]]);
  const [starter, setstarter] = useState(false);
- const [end, setend] = useState(false);
+ const [ends, setends] = useState(false);
  const [start, setstart] = useState([8,10]);
  const[page,setpage] = useState(1);
 
  const handleenter = (row, col) => {
-if (press &&  !starter && !end && canvas[row][col].status!== "starter"&& canvas[row][col].status!== "end"){
+  
+if (press &&  !starter && !ends && canvas[row][col].status!== "starter"&& canvas[row][col].status!== "end" && !weight){
       setcanvas((c) => {
          const a = [...c];
         
@@ -23,7 +28,14 @@ if (press &&  !starter && !end && canvas[row][col].status!== "starter"&& canvas[
          return a
       })
    }
-   else if (press && starter && !end){
+   if ( !starter && !ends && canvas[row][col].status!== "starter"&& canvas[row][col].status!== "end" && weight){
+      setcanvas((c) => {
+         const a = [...c];
+         a[row][col].status = "weight"
+         return a
+      })
+   }
+   else if (press && starter && !ends){
       setcanvas((c) => {
          const a = [...c];
          for (var i = 0; i<20; i++){
@@ -52,7 +64,7 @@ if (press &&  !starter && !end && canvas[row][col].status!== "starter"&& canvas[
       })
 
    }
-   else if (press && end){
+   else if (press && ends){
       setcanvas((c) => {
          const a = [...c];
          for (var i = 0; i<20; i++){
@@ -67,6 +79,7 @@ if (press &&  !starter && !end && canvas[row][col].status!== "starter"&& canvas[
            }
         }
          a[row][col].status = "end"
+         setends([row,col]);
          return a
       })
 
@@ -81,14 +94,22 @@ if (press &&  !starter && !end && canvas[row][col].status!== "starter"&& canvas[
       setstarter(true)
    }
    if (status === "end"){
-      setend(true)
+      setends(true)
    }
     
  }
  const handleup = () => {
    setstarter(false)
-   setend(false)
-   setpress(false)
+   setends(false)
+   setweight(false)
+   setpress((p)=> {
+      const a = p
+      if (!a){
+         return false;
+      }
+      else 
+      return false;
+   })
     
  }
 
@@ -106,7 +127,7 @@ if (press &&  !starter && !end && canvas[row][col].status!== "starter"&& canvas[
              
          }
       }
-      setstart([8,10]);
+    
       return x
    })
  }
@@ -118,8 +139,9 @@ const create =  () => {
  for (var i = 0; i<20; i++){
     a.push([]);
      for (var j=0; j<50; j++){
-      if (i === 8 && j === 10){
+      if (i ===  8 && j === 10){
          var obj = {x: i, y: j,  status: "starter"};
+
         a[i].push(obj);
       }
       else if (i === 8 && j===40) {
@@ -130,16 +152,16 @@ const create =  () => {
           obj = {x: i, y: j, status: "space"};
         a[i].push(obj);
       }
-        
     }
  }
  setcanvas(a);
+ setstart([8,10]);
+ 
 
  }
- useEffect(create, []);
- useEffect(()=> {setstart([8,10])},[]);
- 
-    
+ useEffect(create,[]);
+//  useEffect(()=> {setstart([8,10])},[]);
+
     const m = canvas.map((objlist,index1)=> {
         return (objlist.map((obj,index) => {
             const cls = `cell ${obj.x} ${obj.y} ${obj.status}`;
@@ -147,7 +169,7 @@ const create =  () => {
             let col = obj.y
          
             return (
-            <div key = {`${index1} ${index}`} className = {cls}
+            <div tabIndex = "0" key = {`${index1} ${index}`} className = {cls}
                  onMouseEnter ={()=> {handleenter(row,col)}}
                  onMouseDown = {(e) => {
                   e.preventDefault(e)
@@ -157,6 +179,9 @@ const create =  () => {
                }
                  onMouseUp = {()=> {handleup()}}
               >
+              {obj.status === "starter" && <FontAwesomeIcon icon={faAngleRight} size = "lg"/>}
+              {obj.status === "end" && <FontAwesomeIcon icon={faLocationDot} color = "red" size= "lg"/>}
+              {obj.status === "weight" && <FontAwesomeIcon icon={faCar}  />}
             </div>);
         }));
     
@@ -169,9 +194,10 @@ const create =  () => {
          <button onClick ={resetpath} className="tabbtn"> <label className="btnlabel">Reset Path</label> </button>
          <button onClick ={create} className="tabbtn"> <label className="btnlabel">Clear Board</label> </button>
          <CallBFS1 canvas = {canvas} setcanvas = {setcanvas} start ={start}/>
+         <RecursizeMaze setcanvas = {setcanvas}/>
       </div>
       </div>
-      <div className="canvas"> {m}</div>
+      <div className="canvas" > {m}</div>
      <Tutorial page = {page} setpage = {setpage}/>
 
       </>

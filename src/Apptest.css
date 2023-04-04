@@ -67,7 +67,7 @@
   
       border-color: black;}
   
-    100% {transform : scale (1) ;
+    100% {transform : scale (1.0) ;
       background-color: black;
   
       border-color: black;}
