@@ -1,9 +1,22 @@
 import shuffle from "./shuffle"
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 export function RecursizeMaze(props) {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    }
     let steps = []
     function maze () {
-        mazeAnimator(1,0);
-        let step2 = new Array(1000);
+        handleClose();
+        mazeAnimator(1,1);
+        let step2 = new Array(999);
         for (let i=0; i<step2.length; i++){
             step2[i] = 0;
         }
@@ -11,8 +24,6 @@ export function RecursizeMaze(props) {
         for (let i =0; i<steps.length; i++){
             step2[steps[i]] = 1;
         }
-       
-        console.log(step2)
         for (let i =0; i<step2.length; i++){
             setTimeout(() => {
                 props.setcanvas((c) => {
@@ -20,20 +31,25 @@ export function RecursizeMaze(props) {
                     if (step2[i] === 0){
                         let x = Math.floor(i/50);
                         let y = i%50;
-                        console.log(x,y)
-                        if (temp[x][y].status !== "end" && temp[x][y].status!== "starter")
-                        temp[x][y].status = "wall";
+                        if (temp[x][y].status !== "end" && temp[x][y].status!== "starter"){
+                            if (props.weight === false){
+                            temp[x][y].status = "wall";}
+                        
+                            else {
+                                temp[x][y].status = "weight";
+                            }
+                        }
                         
                     }
                    
                     return temp;
                 })
-            }, i*7);
+            }, i*10);
         }
     }
-    var vis = new Array(1001)
-    let count = 0
-    for (let i=0; i<1001; i++){
+    var vis = new Array(999)
+   
+    for (let i=0; i<1000; i++){
         vis[i] = 0
     }
     function mazeAnimator (r, c) {
@@ -44,7 +60,7 @@ export function RecursizeMaze(props) {
         console.log(cell)
         steps.push(cell)
         vis[cell] = 1
-        let i = 0
+      
         for (let j =0; j<4; j++) {
             if (arr[j] === "N")
             {
@@ -87,8 +103,30 @@ export function RecursizeMaze(props) {
         
     }
     return (
-        <button onClick={maze}> Maze! </button>
-    )
+        <div>
+          <Button
+          className='tabbtn button'
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            Maze
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            <MenuItem onClick={maze}>{props.weight === false? "Recursive Maze Algortihm": "Recursize weight maze"}</MenuItem>
+          </Menu>
+        </div>
+      );
 
 }
 

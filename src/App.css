@@ -2,8 +2,8 @@
 .canvas {
   display: grid;
   grid-template-columns: repeat(50, 1fr);
- grid-template-rows: repeat(20, 30px);
- margin: 0px 5px;
+  grid-template-rows: repeat(20, 30px);
+  margin: 0px 5px;
   
 }
 * {
@@ -12,6 +12,7 @@
 .controls {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin-bottom: 2%;
   padding:1%;
   overflow: wrap;
@@ -19,7 +20,7 @@
 .tab {
   margin-top: 0%;
  
-  background-color: #0E8388;
+  background-color: #34495e;
 } 
 .btnlabel {
   font-size: medium;
@@ -34,12 +35,13 @@ button {
   margin: 1%;
   margin-left: 0px;
   min-height: 30px;
-  background-color:#0E8388;
+  background-color:#34495e;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
   padding-left: 1%;
   padding-right: 1%;
   position: relative;
+  color: white;
  
   border: 0px;
 }
@@ -72,6 +74,17 @@ label:hover{
   transform: scaleX(1);
   bottom: 0px;
   left: 12px;
+}
+.mbtn {
+  margin: 2%;
+  color: white;
+  font-weight: 600;
+  padding-top:8px;
+  border-radius: 5px;
+  border: none;
+  background-color: #49cab0;
+  font-size: medium;
+  
 }
 .cell {
   border: 1px;
@@ -125,48 +138,56 @@ label:hover{
 .test {
   min-height: 100px;
 }
-.visited {
+ .visited , .weightvisit{
   
   animation-name: visitedanimation;
   animation-duration: 2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   transition-timing-function: linear;
+  animation-timing-function: linear;
   transition-property: transform, border-radius, background-color;
 }
 @keyframes visitedanimation {
-  10% {background-color: yellow;
-     transform: scale(1);
-    
+  5% {background-color: yellow;
+     transform: scale(0.4);
+    border-radius: 100%;
      border-color: yellow;
+    
     }
   11% {
     background-color: #4664a5;
-     transform: scale(0.6);
+     transform: scale(0.5);
      border-radius: 40%;
+   
      border-color: #4664a5;
   }
+ 
   50% {transform : scale(1);
     background-color: #4d8ee3;
+  
    
     border-radius: 8%;
-    border-radius: 10%;
+    border-radius: 30%;
 
     border-color: #40cee3;}
 
 
   
-    60% {transform : scale(1.15);
-        background-color: #00ffcc;
-     
-        border-radius: 10%;
-      
+   
+        75% {transform : scale(1.15);
+          background-color: #00ffcc;
+          border-radius: 20%;
+       
+        
+    
+          border-color: #00ffcc;}
   
-        border-color: #00ffcc;}
   
-  
-    100% {  
+    100% { 
             background-color: #40cee3;
+           
+        
             transform: scale(1.0);
             /* background-color: pink; */
            
@@ -175,7 +196,7 @@ label:hover{
     border-color: white;}
     
 }
-.path {
+.path, .weightpath {
   background-color: yellow;
   border-color: yellow;
   
@@ -198,6 +219,9 @@ label:hover{
 }
 h2 {
   color: whitesmoke;
+  margin-left: 2%;
+  padding-top: 1%;
+  margin-bottom: 0px;
 }
 .tutorial {
  
@@ -235,26 +259,34 @@ line-height: 130%;
 
 
 .btn1{
-  position: absolute;
-  bottom:10px;
+  position: relative;
+  left: 1rem;
 }
 .btn2 {
-  position: absolute;
-  bottom:10px;
-  right: 5px;
+  position: relative;
+
+right: 0rem;
+  
 }
 .btn3 {
-  position: absolute;
-  bottom:10px;
-  right:85px;
+  position: relative;
+  
+  right:0rem;
+ 
+}
+.tutbtn{
+  display: flex;
 }
 .tutbtn> * {
+  
+  top:5rem;
   margin: 2%;
   color: white;
   padding-left: 2%;
   padding-right: 2%;
-  border-radius: 2px;
+  border-radius: 5px;
   background-color: #EB455F;
+  
   
 }
 .pageno {

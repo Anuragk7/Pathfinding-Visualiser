@@ -3,8 +3,8 @@
     function tracker (cell,path) {
         
         const arr = []
-        var r1 = Math.floor(cell/50)
-        var c1 = cell%50
+        let r1 = Math.floor(cell/50)
+        let c1 = cell%50
         cell = path[cell]
         while (true) {
             
@@ -12,16 +12,19 @@
              c1 = cell%50;
              
              
-          
+            
             if ((r1 === props.start[0]) && (c1 === props.start[1])){
                 console.log("break condition1")
+                console.log(arr)
                 arr.reverse();
+                
                 return arr;
             }
-            if (!cell){
+            if (cell < 0 ||  cell>999){
                 console.log("break condition2")
-                console.log(arr);
+                
                 arr.reverse();
+                console.log(arr)
                 return arr;
             }
             arr.push({row:r1, col:c1})
@@ -40,7 +43,7 @@
         const ans = []
         const queue = []
         var b = [...x]
-        var path = [1000]
+        var path = new Array(999)
         //topleft
         
       
@@ -61,50 +64,52 @@
           
             if (r-1 >= 0 && (b[r-1][c].status=== "space" || b[r-1][c].status=== "end")){
                 if (b[r-1][c].status=== "end"){
-                    path[(r-1)*50 + c] = r*50 + c
-                    b[r-1][c].status = "visited"
-                    
+                    path[(r-1)*50 + c] = (r-1)*50 + c
                     const abc = tracker((r-1)*50 + c,path)
-                    console.log ({a:abc.length, b:ans.concat(abc)})
-                    return {a:abc.length, x:ans}
+                   console.log(`send ${r} ${c}`)
+                   b[r-1][c].status= "visited"
+                    return {a:abc.length, x:ans.concat(abc)}
+
                 }
+
                 queue.push({row: r-1, col: c})
                 ans.push({row: r-1, col: c})
                 path[(r-1)*50 + c] = r*50 + c
-               
                 b[r-1][c].status= "visited"
-                
             }
             // //right
             if (c+1 < 50 && (b[r][c+1].status=== "space" || b[r][c+1].status=== "end")){
                 if (b[r][c+1].status=== "end"){
                     path[(r)*50 + c+1] = r*50 + c
-                    b[r][c+1].status= "visited"
+                  
                      const abc = tracker((r)*50 + c+1,path)
-                     console.log ({a:abc, b:ans})
+                     console.log(`send ${r} ${c}`)
+                     b[r][c+1].status= "visited"
                      return {a:abc.length, x:ans.concat(abc)}
                 }
                 queue.push({row: r, col: c+1});
                 ans.push({row: r, col: c+1});
+                b[r][c+1].status= "visited"
                 path[(r)*50 + c+1] = r*50 + c
               
-                b[r][c+1].status= "visited"
+              
         
              }
              // //bottom
              if ( r+1<20 && (b[r+1][c].status=== "space" ||  b[r+1][c].status=== "end")){
                 if (b[r+1][c].status=== "end"){
                     path[(r+1)*50 + c] = r*50 + c
-                    b[r+1][c].status= "visited"
+                  
                     const abc = tracker((r+1)*50 + c,path)
-                    console.log ({a:abc, b:ans}) 
+                    console.log(`send ${r} ${c}`)
+                    b[r+1][c].status= "visited"
                     return {a:abc.length, x:ans.concat(abc)}
                 }
                 queue.push({row: r+1, col: c});
                 ans.push({row: r+1, col: c});
                 path[(r+1)*50 + c] = r*50 + c
-               
                 b[r+1][c].status= "visited"
+                
         
             }
         
@@ -114,9 +119,9 @@
             if ( c-1>=0 && (b[r][c-1].status=== "space" || b[r][c-1].status=== "end")){
                 if (b[r][c-1].status=== "end"){
                     path[(r)*50 + c-1] = r*50 + c
-                    b[r][c-1].status= "visited"
                     const abc = tracker((r)*50 + c-1,path)
-                    console.log ({a:abc, b:ans}) 
+                    console.log(`send ${r} ${c}`)
+                    b[r][c-1].status= "visited"
                     return {a:abc.length, x:ans.concat(abc)}
                 }
                 queue.push({row: r, col: c-1});
@@ -135,6 +140,10 @@
         
     }
     function BFS () {
+        window.scrollTo(
+            {top: 1000,
+            behavior: 'smooth'}
+        )
         const a = [];
         for (var i = 0; i<20; i++){
            a.push([]);
@@ -145,8 +154,9 @@
            }
         }
         const b = BFSanimator([props.start[0],props.start[1]],a)
+        console.log(b);
         const len = b.a
-        var t = 8;
+        var t = 10;
         for (let i=0; i<b.x.length; i++ ){
            var add = 8;
           
@@ -164,7 +174,9 @@
                     }
      
                     else {
+                        console.log(`${b.x[i].row} ${b.x[i].col}`)
                        curr[b.x[i].row][b.x[i].col].status = "path"
+                      
                       
                     }
                     return curr
@@ -177,7 +189,7 @@
       
     
      }
-     return  <button onClick ={BFS}> <label className="btnlabel">Start BFS!</label> </button>
+     return  <button onClick ={BFS}  className="mbtn"> <label className="btnlabel">Visualize BFS!</label> </button>
     
 
  }
